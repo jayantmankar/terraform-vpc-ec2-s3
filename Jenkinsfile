@@ -8,6 +8,14 @@ pipeline {
 
 
     stages {
+        stage('AWS auth') {
+            steps {
+                withAWS(credentials: 'terraforms3', region: 'ap-south-1')
+                echo 'Terraform Initialization is In Progress!'
+                sh 'terraform init'
+               
+            }
+        }
         stage('Terraform Version') {
             steps {
                 echo 'Terraform Initialization is In Progress!'
