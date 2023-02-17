@@ -5,20 +5,6 @@ pipeline {
     }
 
     agent any
-
-
-    stages {
-        stage('Deploy') {
-           steps {
-           script {
-            withCredentials([[
-                class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: terraforms3,
-            
-            ]])
-        }
-    }
-}
         stage('Terraform Version') {
             steps {
                 echo 'Terraform Initialization is In Progress!'
