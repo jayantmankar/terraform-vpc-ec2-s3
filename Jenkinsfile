@@ -5,10 +5,11 @@ pipeline {
     }
 
     agent any
+
         stage('Terraform Version') {
             steps {
                 echo 'Terraform Initialization is In Progress!'
-               
+                sh 'terraform init'
             }
         }
         stage('Formate') {
