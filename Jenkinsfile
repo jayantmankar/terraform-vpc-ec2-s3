@@ -5,7 +5,7 @@ pipeline {
     }
 
     agent any
-
+    stages {
         stage('Terraform Version') {
             steps {
                 echo 'Terraform Initialization is In Progress!'
