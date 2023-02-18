@@ -40,5 +40,11 @@ pipeline {
                 sh 'terraform apply --auto-approve'
             }
         }
+         stage('Terraform Apply') {
+            steps {
+                echo 'Terraform Apply'
+                sh 'terraform destroy'
+            }
+        }
 	}
 }
