@@ -5,6 +5,10 @@ pipeline {
     }
 
     agent any
+    
+    environment {
+        USER_CREDENTIALS = credentials('terraformuser')
+    }
     stages {
         stage('Terraform Version') {
             steps {
