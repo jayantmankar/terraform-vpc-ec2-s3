@@ -1,9 +1,13 @@
-resource "aws_s3_bucket" "Jayant" {
-  bucket = "terraform-sample-s3bucket00111"
-  acl    = "private"
+resource "aws_s3_bucket" "b" {
+  bucket = "my-tf-test-bucket"
 
   tags = {
-    Name        = "awsclass-aug2022"
-    Environment = "dev"
+    Name        = "My bucket"
+    Environment = "Dev"
   }
-} 
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
+}
