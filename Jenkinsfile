@@ -35,15 +35,22 @@ pipeline {
             }
         }        
         stage('Terraform Apply') {
-            steps {
-                echo 'Terraform Apply'
-                sh 'terraform apply --auto-approve'
+            // only execute stage if apply is desired
+           when { expression { return env.Action == 'apply' } }
+           steps {
+               // query for user approval of plan
+              input(message: 'Click "proceed" to approve the above Terraform Plan')
+               // apply the plan if approved
+              sh(
+                   label:  'Terraform Apply',
+                   script: 'terraform apply -auto-approve -input=false -no-color plan.tfplan'
+                )
             }
         }
          stage('Terraform destroy') {
             steps {
                 echo 'Terraform Apply'
-                sh 'terraform destroy'
+                sh 'terraform destroy -auto-aprove'
             }
         }
 	}
